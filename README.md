@@ -10,12 +10,12 @@ TODO
 ## Usage
 TODO
 
-##Contributing
-###Updating lexer and parser
+## Contributing
+### Updating lexer and parser
 Read [ANTLR4 documentation][antlr4docs] on how to install it for development
 antlr4 -Dlanguage=Python3 SugarCubeLexer.g4 -visitor -o sugarpy
 antlr4 -Dlanguage=Python3 SugarCubeLexer.g4 -visitor -o sugarpy
-###Debugging Lexer and Parser
+### Debugging Lexer and Parser
 antlr4 SugarCubeLexer.g4
 antlr4 SugarCubeParser.g4
 javac SugarCube*.java
@@ -23,9 +23,8 @@ grun SugarCube parse -tree -gui
 Paste test scene data and then Ctrl+d
 
 
-###Testing
-grun SugarCube parse -tree -gui
-Paste some tw-passagedata from sample.xml or other test SugarCube markup
+### Testing
+Run sample/sample.py
 
 [The source for this project is available here][src].
 
