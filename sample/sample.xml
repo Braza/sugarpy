@@ -1,0 +1,24 @@
+<tw-storydata name="sample" startnode="1" creator="Twine" creator-version="2.2.1"
+              ifid="18998050-12B5-486E-9223-D01DE19B7A90" zoom="1" format="SugarCube" format-version="2.21.0"
+              options="">
+    <tw-passagedata pid="1" name="Entry point" tags="" position="412,187.5" size="100,100">Basic text test
+
+        [[Link test]]
+        [[Link test 2|Link test]]
+
+        &lt;&lt;set $testVar = 1&gt;&gt;
+        testVar is assigned to $testVar
+
+        &lt;&lt;set $randVar = random(5,100)&gt;&gt;
+        Random value $randVar
+
+        &lt;&lt;if $testVar != $randVar&gt;&gt;
+        If statement test passed.
+        &lt;&lt;else&gt;&gt;
+        If statement test failed.
+        &lt;&lt;/if&gt;&gt;
+    </tw-passagedata>
+    <tw-passagedata pid="2" name="Link test" tags="" position="337,337.5" size="100,100">
+        &lt;&lt;back&gt;&gt;
+    </tw-passagedata>
+</tw-storydata>
