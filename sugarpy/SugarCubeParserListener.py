@@ -35,6 +35,51 @@ class SugarCubeParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SugarCubeParser#backLinkMacro.
+    def enterBackLinkMacro(self, ctx:SugarCubeParser.BackLinkMacroContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#backLinkMacro.
+    def exitBackLinkMacro(self, ctx:SugarCubeParser.BackLinkMacroContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#returnLinkMacro.
+    def enterReturnLinkMacro(self, ctx:SugarCubeParser.ReturnLinkMacroContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#returnLinkMacro.
+    def exitReturnLinkMacro(self, ctx:SugarCubeParser.ReturnLinkMacroContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#actionsLinkMacro.
+    def enterActionsLinkMacro(self, ctx:SugarCubeParser.ActionsLinkMacroContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#actionsLinkMacro.
+    def exitActionsLinkMacro(self, ctx:SugarCubeParser.ActionsLinkMacroContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#choiceVarsMacro.
+    def enterChoiceVarsMacro(self, ctx:SugarCubeParser.ChoiceVarsMacroContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#choiceVarsMacro.
+    def exitChoiceVarsMacro(self, ctx:SugarCubeParser.ChoiceVarsMacroContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#link.
+    def enterLink(self, ctx:SugarCubeParser.LinkContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#link.
+    def exitLink(self, ctx:SugarCubeParser.LinkContext):
+        pass
+
+
     # Enter a parse tree produced by SugarCubeParser#assignment.
     def enterAssignment(self, ctx:SugarCubeParser.AssignmentContext):
         pass
@@ -107,6 +152,15 @@ class SugarCubeParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SugarCubeParser#atonExpr.
+    def enterAtonExpr(self, ctx:SugarCubeParser.AtonExprContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#atonExpr.
+    def exitAtonExpr(self, ctx:SugarCubeParser.AtonExprContext):
+        pass
+
+
     # Enter a parse tree produced by SugarCubeParser#orExpr.
     def enterOrExpr(self, ctx:SugarCubeParser.OrExprContext):
         pass
@@ -152,6 +206,24 @@ class SugarCubeParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SugarCubeParser#varAtom.
+    def enterVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#varAtom.
+    def exitVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#stringAtom.
+    def enterStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#stringAtom.
+    def exitStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
+        pass
+
+
     # Enter a parse tree produced by SugarCubeParser#parExpr.
     def enterParExpr(self, ctx:SugarCubeParser.ParExprContext):
         pass
@@ -179,24 +251,6 @@ class SugarCubeParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SugarCubeParser#varAtom.
-    def enterVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
-        pass
-
-    # Exit a parse tree produced by SugarCubeParser#varAtom.
-    def exitVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
-        pass
-
-
-    # Enter a parse tree produced by SugarCubeParser#stringAtom.
-    def enterStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
-        pass
-
-    # Exit a parse tree produced by SugarCubeParser#stringAtom.
-    def exitStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
-        pass
-
-
     # Enter a parse tree produced by SugarCubeParser#nilAtom.
     def enterNilAtom(self, ctx:SugarCubeParser.NilAtomContext):
         pass
@@ -221,6 +275,15 @@ class SugarCubeParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SugarCubeParser#arguments.
     def exitArguments(self, ctx:SugarCubeParser.ArgumentsContext):
+        pass
+
+
+    # Enter a parse tree produced by SugarCubeParser#linktext.
+    def enterLinktext(self, ctx:SugarCubeParser.LinktextContext):
+        pass
+
+    # Exit a parse tree produced by SugarCubeParser#linktext.
+    def exitLinktext(self, ctx:SugarCubeParser.LinktextContext):
         pass
 
 

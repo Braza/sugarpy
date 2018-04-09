@@ -24,6 +24,31 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by SugarCubeParser#backLinkMacro.
+    def visitBackLinkMacro(self, ctx:SugarCubeParser.BackLinkMacroContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#returnLinkMacro.
+    def visitReturnLinkMacro(self, ctx:SugarCubeParser.ReturnLinkMacroContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#actionsLinkMacro.
+    def visitActionsLinkMacro(self, ctx:SugarCubeParser.ActionsLinkMacroContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#choiceVarsMacro.
+    def visitChoiceVarsMacro(self, ctx:SugarCubeParser.ChoiceVarsMacroContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#link.
+    def visitLink(self, ctx:SugarCubeParser.LinkContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by SugarCubeParser#assignment.
     def visitAssignment(self, ctx:SugarCubeParser.AssignmentContext):
         return self.visitChildren(ctx)
@@ -64,6 +89,11 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by SugarCubeParser#atonExpr.
+    def visitAtonExpr(self, ctx:SugarCubeParser.AtonExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by SugarCubeParser#orExpr.
     def visitOrExpr(self, ctx:SugarCubeParser.OrExprContext):
         return self.visitChildren(ctx)
@@ -89,6 +119,16 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by SugarCubeParser#varAtom.
+    def visitVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#stringAtom.
+    def visitStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by SugarCubeParser#parExpr.
     def visitParExpr(self, ctx:SugarCubeParser.ParExprContext):
         return self.visitChildren(ctx)
@@ -104,16 +144,6 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by SugarCubeParser#varAtom.
-    def visitVarAtom(self, ctx:SugarCubeParser.VarAtomContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by SugarCubeParser#stringAtom.
-    def visitStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by SugarCubeParser#nilAtom.
     def visitNilAtom(self, ctx:SugarCubeParser.NilAtomContext):
         return self.visitChildren(ctx)
@@ -126,6 +156,11 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by SugarCubeParser#arguments.
     def visitArguments(self, ctx:SugarCubeParser.ArgumentsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SugarCubeParser#linktext.
+    def visitLinktext(self, ctx:SugarCubeParser.LinktextContext):
         return self.visitChildren(ctx)
 
 

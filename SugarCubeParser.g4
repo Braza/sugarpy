@@ -14,9 +14,23 @@ statement
  : assignment
  | if_stat
  | text
- | log
- | atom
+ | var_atom
+ | str_atom
+ | link_macro
+ | link
  ;
+
+ link_macro
+  : OPENMACRO BACK CLOSEMACRO                                                      #backLinkMacro
+  | OPENMACRO RETURN CLOSEMACRO                                                    #returnLinkMacro
+  | OPENMACRO ACTIONS ( var_atom | str_atom | link ) ( var_atom | str_atom | link )* CLOSEMACRO  #actionsLinkMacro
+  | OPENMACRO CHOICE ( var_atom | str_atom | link ) ( var_atom | str_atom | link )? CLOSEMACRO   #choiceVarsMacro
+  ;
+
+  link
+  : (OPENLINK | TAGOPENLINK) linktext (LINKDIV linktext)* CLOSELINK
+  ;
+
 
 assignment
  : OPENMACRO SET VAR ASSIGN expr CLOSEMACRO
@@ -41,16 +55,24 @@ expr
  | expr OR expr                         #orExpr
  | function                             #funcExpr
  | atom                                 #atomExpr
+ | var_atom                             #atomExpr
+ | str_atom                             #atonExpr
 // expr POW<assoc=right> expr           #powExpr
+ ;
+
+var_atom
+ : VAR            #varAtom
+ | NAKEDVAR       #varAtom
+ ;
+
+str_atom
+ : STRING         #stringAtom
  ;
 
 atom
  : OPAR expr CPAR #parExpr
  | (INT | FLOAT)  #numberAtom
  | (TRUE | FALSE) #booleanAtom
- | VAR            #varAtom
- | NAKEDVAR       #varAtom
- | STRING         #stringAtom
  | NIL            #nilAtom
  ;
 
@@ -59,6 +81,10 @@ function
   ;
 
 arguments : OPAR atom (COMMA atom)* CPAR;
+
+linktext
+ : LINKTEXT
+ ;
 
 text
  : TEXT

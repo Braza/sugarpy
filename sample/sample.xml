@@ -1,7 +1,4 @@
-<tw-storydata name="sample" startnode="1" creator="Twine" creator-version="2.2.1"
-              ifid="18998050-12B5-486E-9223-D01DE19B7A90" zoom="1" format="SugarCube" format-version="2.21.0"
-              options="">
-    <tw-passagedata pid="1" name="Entry point" tags="" position="412,187.5" size="100,100">Basic text test
+<tw-storydata name="sample" startnode="1" creator="Twine" creator-version="2.2.1" ifid="18998050-12B5-486E-9223-D01DE19B7A90" zoom="1" format="SugarCube" format-version="2.21.0" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Entry point" tags="" position="412,185.5" size="100,100">Basic text test
 
 [[Link test]]
 [[Link test 2|Link test]]
@@ -14,8 +11,10 @@ Random value $randVar
 
 &lt;&lt;set $avgVar = ($testVar + $randVar)/2&gt;&gt;
 Average is $avgVar
+
 &lt;&lt;set $multVar = ($randVar - $testVar)*1.3&gt;&gt;
 Mult test result is $multVar
+
 &lt;&lt;set $modVar = $randVar % $testVar&gt;&gt;
 Mod test result is $modVar
 
@@ -24,8 +23,14 @@ If statement test passed.
 &lt;&lt;else&gt;&gt;
 If statement test failed.
 &lt;&lt;/if&gt;&gt;
-    </tw-passagedata>
-    <tw-passagedata pid="2" name="Link test" tags="" position="337,337.5" size="100,100">
+
+&lt;&lt;set $go to &quot;Outside&quot;&gt;&gt;
+&lt;&lt;set $show to &quot;Escape from this place&quot;&gt;&gt;
+&lt;&lt;choice $go $show&gt;&gt;
+&lt;&lt;choice [[Touch the strange mirror.|Entered magic mirror]]&gt;&gt;
+&lt;&lt;choice &quot;Take the red pill&quot;&gt;&gt;
+&lt;&lt;actions &quot;Look at the pie&quot; &quot;Smell the pie&quot; &quot;Taste the pie&quot;&gt;&gt;
+&lt;&lt;actions [[Look at the pie]] [[Smell|Smell the pie]] &quot;Taste the pie&quot;&gt;&gt;
+
 &lt;&lt;back&gt;&gt;
-    </tw-passagedata>
-</tw-storydata>
+</tw-passagedata><tw-passagedata pid="2" name="Link test" tags="" position="263,362.5" size="100,100">&lt;&lt;back&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Entered magic mirror" tags="" position="506,366.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="4" name="Look at the pie" tags="" position="253,198.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="5" name="Smell the pie" tags="" position="565,197.5" size="100,100">Double-click this passage to edit it.</tw-passagedata></tw-storydata>

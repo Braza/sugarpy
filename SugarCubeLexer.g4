@@ -2,20 +2,45 @@ lexer grammar SugarCubeLexer;
 
 
 TEXT
- : ( ~[<$] | '<' ~'<' )+
+ : ( ~[<$[] | '<' ~'<' )+
  ;
 
 NAKEDVAR : '$' ID;
 
 OPENMACRO: '<<' -> pushMode(InTag);
+OPENLINK : OPLINK -> pushMode(InLink);
 
+fragment OPLINK : '[[';
+fragment CLLINK : ']]';
 fragment DIGIT : [0-9];
 fragment ID : [a-zA-Z_] [a-zA-Z_0-9]*;
+
+mode InLink;
+
+    CLOSELINK : CLLINK -> popMode;
+
+    LINKDIV : '|' ;
+
+    LINKTEXT
+    : ( ~[|\]] )+
+    ;
+
+    LINKVAR
+    : '$' ID
+    ;
 
 mode InTag;
 
     CLOSEMACRO : '>>' -> popMode;
+
     RANDOM : 'random';
+    BACK : 'back';
+    RETURN : 'return';
+    ACTIONS : 'actions';
+    CHOICE : 'choice';
+
+    TAGOPENLINK : OPLINK -> pushMode(InLink);
+
     VAR : '$' ID;
     OR : '||';
     AND : '&&';
@@ -39,6 +64,8 @@ mode InTag;
     CPAR : ')';
     OBRACE : '{';
     CBRACE : '}';
+
+
     COMMA : ',';
 
     TRUE : 'true';
@@ -51,7 +78,6 @@ mode InTag;
     //WHILE : 'while';
     //LOG : 'log';
     SET : 'set';
-    BACK : 'back';
 
     INT
      : DIGIT+
@@ -66,9 +92,11 @@ mode InTag;
      : '"' (~["\r\n] | '""')* '"'
      ;
 
-//TEXT
-// : [а-яА-Яa-zA-Z []|,.\n\r\?\-/]+
-// ;
+
+
+//    INNERTEXT
+//     : (~["\r\n])+
+//     ;
 
 //COMMENT
 // : '#' ~[\r\n]* -> skip
