@@ -49,7 +49,7 @@ atom
  | (INT | FLOAT)  #numberAtom
  | (TRUE | FALSE) #booleanAtom
  | VAR            #varAtom
- | NAKEDVAR       #varNakedAtom
+ | NAKEDVAR       #varAtom
  | STRING         #stringAtom
  | NIL            #nilAtom
  ;

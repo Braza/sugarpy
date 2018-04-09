@@ -188,15 +188,6 @@ class SugarCubeParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SugarCubeParser#varNakedAtom.
-    def enterVarNakedAtom(self, ctx:SugarCubeParser.VarNakedAtomContext):
-        pass
-
-    # Exit a parse tree produced by SugarCubeParser#varNakedAtom.
-    def exitVarNakedAtom(self, ctx:SugarCubeParser.VarNakedAtomContext):
-        pass
-
-
     # Enter a parse tree produced by SugarCubeParser#stringAtom.
     def enterStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
         pass

@@ -109,11 +109,6 @@ class SugarCubeParserVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by SugarCubeParser#varNakedAtom.
-    def visitVarNakedAtom(self, ctx:SugarCubeParser.VarNakedAtomContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by SugarCubeParser#stringAtom.
     def visitStringAtom(self, ctx:SugarCubeParser.StringAtomContext):
         return self.visitChildren(ctx)

@@ -1187,6 +1187,8 @@ class SugarCubeParser ( Parser ):
 
         def VAR(self):
             return self.getToken(SugarCubeParser.VAR, 0)
+        def NAKEDVAR(self):
+            return self.getToken(SugarCubeParser.NAKEDVAR, 0)
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterVarAtom" ):
@@ -1277,30 +1279,6 @@ class SugarCubeParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
-    class VarNakedAtomContext(AtomContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SugarCubeParser.AtomContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def NAKEDVAR(self):
-            return self.getToken(SugarCubeParser.NAKEDVAR, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterVarNakedAtom" ):
-                listener.enterVarNakedAtom(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitVarNakedAtom" ):
-                listener.exitVarNakedAtom(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVarNakedAtom" ):
-                return visitor.visitVarNakedAtom(self)
-            else:
-                return visitor.visitChildren(self)
-
-
 
     def atom(self):
 
@@ -1350,7 +1328,7 @@ class SugarCubeParser ( Parser ):
                 self.match(SugarCubeParser.VAR)
                 pass
             elif token in [SugarCubeParser.NAKEDVAR]:
-                localctx = SugarCubeParser.VarNakedAtomContext(self, localctx)
+                localctx = SugarCubeParser.VarAtomContext(self, localctx)
                 self.enterOuterAlt(localctx, 5)
                 self.state = 114
                 self.match(SugarCubeParser.NAKEDVAR)

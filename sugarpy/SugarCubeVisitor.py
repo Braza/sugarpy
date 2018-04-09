@@ -35,7 +35,7 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
 
             c = ctx.getChild(i)
             child_result = c.accept(self)
-            if child_result:
+            if child_result is not None:
                 result += str(child_result)
 
         return result
@@ -43,14 +43,12 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
     # Visit a parse tree produced by SugarCubeParser#assignment.
     def visitAssignment(self, ctx: SugarCubeParser.AssignmentContext):
         right = ctx.expr().accept(self)
-        if right:
-            print('Setting var: {} , value: {}; available vars: {}'.format(
-                ctx.VAR().__str__(),
-                right,
-                self.story_vars))
-            self.story_vars[ctx.VAR().__str__()] = right
-        else:
-            return None
+        # print('Setting var: {} , value: {}; available vars: {}'.format(
+        #    ctx.VAR().__str__(),
+        #    right,
+        #    self.story_vars))
+        self.story_vars[ctx.VAR().__str__()] = right
+        return None
 
     # Visit a parse tree produced by SugarCubeParser#if_stat.
     def visitIf_stat(self, ctx: SugarCubeParser.If_statContext):
@@ -77,29 +75,30 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
 
     # Visit a parse tree produced by SugarCubeParser#multiplicationExpr.
     def visitMultiplicationExpr(self, ctx: SugarCubeParser.MultiplicationExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
-        if ctx.op in ctx.MULT():
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
+        print('Mult-Div op: {} {} {}'.format(left, ctx.op.type, right))
+        if ctx.op.type == SugarCubeParser.MULT:
             return left * right
-        elif ctx.op in ctx.DIV():
+        elif ctx.op.type == SugarCubeParser.DIV:
             return left / right
-        elif ctx.op in ctx.MOD():
+        elif ctx.op.type == SugarCubeParser.MOD:
             return left % right
         raise ValueError()
 
     # Visit a parse tree produced by SugarCubeParser#orExpr.
     def visitOrExpr(self, ctx: SugarCubeParser.OrExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
         return left or right
 
-    def visitRandomFunc(self, ctx:SugarCubeParser.RandomFuncContext):
+    def visitRandomFunc(self, ctx: SugarCubeParser.RandomFuncContext):
         print(ctx.children)
         c = ctx.getChild(1)
         args = c.accept(self)
         return randint(*args)
 
-    def visitArguments(self, ctx:SugarCubeParser.ArgumentsContext):
+    def visitArguments(self, ctx: SugarCubeParser.ArgumentsContext):
         print("visitng arguments")
         result = []
         n = ctx.getChildCount()
@@ -114,22 +113,19 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
 
         return result
 
-
-    # Visit a parse tree produced by SugarCubeParser#additiveExpr.
     def visitAdditiveExpr(self, ctx: SugarCubeParser.AdditiveExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
-        print('Additive op: {} {} {}'.format(left, ctx.op.type, right))
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
         if ctx.op.type == SugarCubeParser.PLUS:
             return left + right
-        elif ctx.type == SugarCubeParser.MINUS:
+        elif ctx.op.type == SugarCubeParser.MINUS:
             return left - right
         raise ValueError()
 
     # Visit a parse tree produced by SugarCubeParser#relationalExpr.
     def visitRelationalExpr(self, ctx: SugarCubeParser.RelationalExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
         if ctx.op.type == SugarCubeParser.GT:
             return left > right
         elif ctx.op.type == SugarCubeParser.LT:
@@ -142,14 +138,14 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
 
     # Visit a parse tree produced by SugarCubeParser#equalityExpr.
     def visitEqualityExpr(self, ctx: SugarCubeParser.EqualityExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
         return (left == right) if ctx.op.type == SugarCubeParser.EQ else (left != right)
 
     # Visit a parse tree produced by SugarCubeParser#andExpr.
     def visitAndExpr(self, ctx: SugarCubeParser.AndExprContext):
-        left = self.visitChildren(ctx.expr(0))
-        right = self.visitChildren(ctx.expr(1))
+        left = ctx.expr(0).accept(self)
+        right = ctx.expr(1).accept(self)
         return left and right
 
     # Visit a parse tree produced by SugarCubeParser#numberAtom.
@@ -161,23 +157,8 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
     def visitBooleanAtom(self, ctx: SugarCubeParser.BooleanAtomContext):
         return ctx.getText() in ctx.TRUE()
 
-    # Visit a parse tree produced by SugarCubeParser#idAtom.
+    # Visit a parse tree produced by SugarCubeParser#varAtom.
     def visitVarAtom(self, ctx: SugarCubeParser.VarAtomContext):
-        if ctx.getText() in self.story_vars.keys():
-            print('Getting var: {} , value: {}; available vars: {}'.format(
-                ctx.getText(),
-                self.story_vars[ctx.getText()],
-                self.story_vars))
-            return self.story_vars[ctx.getText()]
-        else:
-            self.story_vars[ctx.getText()] = None
-            print('Getting var: {}, but not found; available vars: {}'.format(
-                ctx.getText(),
-                self.story_vars))
-            return self.story_vars[ctx.getText()]
-
-    # Visit a parse tree produced by SugarCubeParser#idAtom.
-    def visitVarNakedAtom(self, ctx: SugarCubeParser.VarNakedAtomContext):
         if ctx.getText() in self.story_vars.keys():
             print('Getting var: {} , value: {}; available vars: {}'.format(
                 ctx.getText(),
@@ -206,3 +187,6 @@ class SugarCubeVisitor(SugarCubeParserVisitor):
     # Visit a parse tree produced by SugarCubeParser#log.
     def visitLog(self, ctx: SugarCubeParser.LogContext):
         print('SugarCubeParserVisitor found unedintefied token: {}'.format(ctx.getText()))
+
+    def visitParExpr(self, ctx: SugarCubeParser.ParExprContext):
+        return ctx.expr().accept(self)
